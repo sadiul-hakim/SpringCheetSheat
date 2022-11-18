@@ -1,6 +1,5 @@
 # SpringCheetSheat
 ------
-
 # Spring Dependency Injection
 
 1. Through XML files
@@ -15,13 +14,13 @@
 2. Through Annotations
 3. Auto Wiring(Works with only Objects)
     1. XML
-        1. no
-        2. byName
-        3. byType
-        4. constructor
-        5. autodetect(Deprecated)
+        1. autowiri attribute values(no,byName,byType,constructor,autodetect(D))
     2. Annotation
-        1. @AutoWiried
+        1. Add @AutoWiried on (Variable/constructor/setter)
+        2. You still need to configure Bean in xml(or somewhere else) file without passing dependency
+        3. auto wiring injects dependencies matching types (byType)
+        4. Using @Qualifier you pass the dependency name.(If you have multiple dependency bean configured with different name)
+        
     
 
 # Spring Bean life cycle config
