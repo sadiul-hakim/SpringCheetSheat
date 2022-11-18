@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd
+    "
+>
+    
+    <context:annotation-config/>
+    
+    <!-- Gloabal Collections-->
+    <util:list list-class="java.util.ArrayList" id="subs">
+        <value>English</value>
+        <value>Math</value>
+        <value>Islamic History</value>
+        <value>Bangla Literature</value>
+        <value>Programming</value>
+    </util:list>
+    
+    <util:map map-class="java.util.HashMap" id="res">
+        <entry key="English" value="90"/>
+        <entry key="Math" value="95"/>
+        <entry key="Islamic History" value="85"/>
+        <entry key="Programming" value="85"/>
+    </util:map>
+    
+    <!-- Global Collections Ends -->
+    
+    <!-- Setter Injection Starts -->
+  
+    <!--    <bean class="com.hakim.Address" name="add" p:street="Bekari" p:city="Dhaka"/>-->
+    
+    <!--    <bean>
+         <property name="street" value="Bekari"/>
+            
+         <property name="city"> 
+             <value>Dhaka</value>
+         </property>
+           
+    </bean>-->
+       
+    
+    <!--<bean class="com.hakim.Student" name="student" p:name="Hakim" p:subjects-ref="subs" p:address-ref="add" p:results-ref="res"/>-->
+    <!--    <bean>
+        <property name="name" value="Hakim"/>
+            
+        <property name="subjects" >
+            <ref bean="subs"/>
+        </property>
+            
+        <property name="address" ref="add"/>
+            
+        <property name="results" ref="res"/>
+           
+    </bean>-->
+    
+    <bean class="com.hakim.Test" name="test" p:id="30" init-method="init" destroy-method="destroy" />
+    <bean class="com.hakim.ConfigLCwithInter" name="inter" p:description="Config usinf interface"  />
+    <bean class="com.hakim.LCConfigAnnotation" name="anno" p:value="32"  />
+    
+    <!-- Setter Injection Ends -->
+    
+    <!-- Constructor Injection Starts -->
+    
+    <bean class="com.hakim.Address" name="add" c:street="Bekari" c:city="Dhaka" />
+
+    
+    <bean class="com.hakim.Student" name="student">
+        <!--        <constructor-args>
+            <value>Hakim</value>
+        </constructor-args>-->
+        <constructor-arg value="Hakim" />
+        <constructor-arg ref="subs"/>
+        <constructor-arg ref="add"/>
+        <constructor-arg ref="res"/>
+        
+    </bean>
+
+    
+    <!-- Constructor Injection Ends -->
+
+
+    <!-- Auto Wiring-->
+        
+        
+    
+    <!-- Auto Wiring-->
+     
+
+</beans>
