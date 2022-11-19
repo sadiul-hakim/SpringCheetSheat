@@ -1,8 +1,9 @@
 # SpringCheetSheat
 ------
-
 # Spring Dependency Injection
+-----
 
+### Add Spring core and spring context dependency
 1. Through XML files
     ### One type one configuration.All configuration inside xml file
     ### Need to configure Bean using <bean/> Element
@@ -24,7 +25,7 @@
     5. To pass name of another Bean user `#{}` spring Expression language
 3. Auto Wiring(Works with only Objects)
     1. XML
-        1. `autowire` attribute values(no,byName,byType,constructor,autodetect(D))
+        1. `autowire` attribute values(no,byName,byType,constructor,autodetect(Depricated))
     2. Annotation
         1. Add @AutoWiried on (Variable/constructor/setter)
         2. You still need to configure Bean in xml(or somewhere else) file without passing dependency using `<bean/>`
@@ -47,6 +48,7 @@
 
     
 # Spring Bean life cycle config
+-----
 
 1. XML
     1. create init and destroy method with same signature in Bean and add `init-method and destroy-method` attribute in xml file.
@@ -61,18 +63,56 @@
     4. enable `context:annotation-config` in xml file
 
 # Spring Bean Scope
+------
 
-### You can change Beans scope using `scope` attribute in Bean tag in xml or `@Scope` Annotation beneath @Component Annotation
+### You can change Beans scope using `scope` attribute in <bean/> tag in xml or `@Scope` Annotation beneath @Component Annotation
 
 1. Singleton(Creates object onece and when requested gives same object)
-2. ProtoType(Created new object when called)
+2. ProtoType(Created netoType(Creatw object when called)
 3. request(works with web)
 4. session(works with web)
 5. globalsession
 
 # Tips
+-----
 
 1. To call static method inside Spring Expression language use this pattern `T(class).method(param)`
 2. To call static field inside Spring Expression language use this pattern `T(class).var`
 3. Use Spring Expression in Double quetes.If you need to use quetes in SpEL use single quetes
+
+
+# Spring JDBC
+-----
+
+1. Add spring jdbc dependency
+2. Add mysql dependency
+3. No need to handle error,No need to close connection/statement.
+
+### Setup
+
+1. using xml file
+    1. First configure `JdbcTemplate` Bean.Then provide its dependency `DataSource`
+        `Package = org.springframework.jdbc.core.JdbcTemplate`
+    2. `DataSource` is a interface it has a Implementation called `DriverManagerDataSource`.Configure it and provide in 'JdbcTemplate'.It has 4 dependencies
+        1. `driverClassName` = mysql driver class path
+        2. `url` = database url
+        3. `username`
+        4. `password`
+    3. Done
+    4. you will get object of JdbcTemplate 
+
+2. using java config(Annotation)
+    1. create a java config file (Annotate the class with `@Configuration` annotation)
+    2. configure `JdbcTemplate` and `DriverManagerDataSource` in the same way as other Beans are configured 
+    3. do not forget to set required values
+    
+
+### Best practises
+
+1. user DTO class
+2. user service and repository interface
+3. configure both serviceImp and repositoryImp class
+4. serviceImp class has an dependency of repositoryImp class, (inject  using constructor injection)
+5. repositoryImp class has an dependency of JdbcTemplte class, (inject using constructor injection)
+
 
