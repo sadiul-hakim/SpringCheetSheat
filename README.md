@@ -106,11 +106,13 @@
     2. configure `JdbcTemplate` and `DriverManagerDataSource` in the same way as other Beans are configured 
     3. do not forget to set required values
     
+3. you can configure spring jdbc using autowiring also.(both xml and Annotation)
+    
 
 ### Best practises
 
-1. user DTO class
-2. user service and repository interface
+1. use DTO class
+2. use service and repository interface
 3. configure both serviceImp and repositoryImp class
 4. serviceImp class has an dependency of repositoryImp class, (inject  using constructor injection)
 5. repositoryImp class has an dependency of JdbcTemplte class, (inject using constructor injection)
