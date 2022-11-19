@@ -1,5 +1,3 @@
-# SpringCheetSheat
-------
 # Spring Dependency Injection
 -----
 
@@ -23,14 +21,19 @@
     3. Annotation configuration creates object in camelCase .Example : You have Bean Student. You will get object like  `(Student)context.getBean("student")`
     4. Add @Value Annotation on top of fields to pass value
     5. To pass name of another Bean user `#{}` spring Expression language
-3. Auto Wiring(Works with only Objects.uses setter injection method)
+3. Auto Wiring(Works with only Objects)
     1. XML
         1. `autowire` attribute values(no,byName,byType,constructor,autodetect(Depricated))
     2. Annotation
-        1. Add @AutoWiried on (Variable/constructor/setter)
-        2. You still need to configure Bean in xml(or somewhere else) file without passing dependency using `<bean/>`
-        3. auto wiring injects dependencies matching types (byType)
-        4. Using @Qualifier you pass the dependency name.(If you have multiple dependency Bean configured with different name)
+        1. Both Annotation and xml file
+            1. Add @AutoWiried on (Variable/constructor/setter)
+            2. You still need to configure Bean in xml(or somewhere else) file without passing dependency using `<bean/>`
+            3. auto wiring injects dependencies matching types (byType).uses setter injection method.
+            4. Using @Qualifier you pass the dependency name.(If you have multiple dependency Bean configured with different name)
+        2. Java file configuration and Annotation
+            1. Annotate Bean wih @Component Annotation
+            2. Add @AutoWiried and @Qualifier Annotation on field
+            3. Add @ComponentScan annotation to specify base package in java config file
         
 4. Using Only Annotation(No more xml files But needs java file)`Better Option use this option.simple steps`
     1. In this method you do not need any xml file.You just need to follow these steps
@@ -107,14 +110,11 @@
     3. do not forget to set required values
     
 3. you can configure spring jdbc using autowiring also.(both xml and Annotation)
-    
 
 ### Best practises
 
-1. use DTO class
-2. use service and repository interface
+1. user DTO class
+2. user service and repository interface
 3. configure both serviceImp and repositoryImp class
 4. serviceImp class has an dependency of repositoryImp class, (inject  using constructor injection)
 5. repositoryImp class has an dependency of JdbcTemplte class, (inject using constructor injection)
-
-
