@@ -23,7 +23,7 @@
     3. Annotation configuration creates object in camelCase .Example : You have Bean Student. You will get object like  `(Student)context.getBean("student")`
     4. Add @Value Annotation on top of fields to pass value
     5. To pass name of another Bean user `#{}` spring Expression language
-3. Auto Wiring(Works with only Objects)
+3. Auto Wiring(Works with only Objects.uses setter injection method)
     1. XML
         1. `autowire` attribute values(no,byName,byType,constructor,autodetect(Depricated))
     2. Annotation
