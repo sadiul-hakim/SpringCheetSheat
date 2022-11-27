@@ -125,3 +125,7 @@
 3. configure both serviceImp and repositoryImp class
 4. serviceImp class has an dependency of repositoryImp class, (inject  using constructor injection (using spring))
 5. repositoryImp class has an dependency of JdbcTemplte class, (inject using constructor injection (using spring))
+
+### Short informations
+1. If you add @Component Annotation on any Bean you do not need to config that bean inside xml file.Just need to specify base package in either xml file or java sonfig file.
+2. In Autowiring you need to config that bean either in xml or using @Component;
